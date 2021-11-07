@@ -1,9 +1,9 @@
 {
-  "name": "dasha-webrtc-sipjs",
+  "name": "dasha.fit",
   "version": "1.0.0",
   "private": true,
-  "description": "Simple demo for testing dasha webrtc",
-  "author": "dasha.ai",
+  "description": "",
+  "author": "",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
@@ -15,11 +15,9 @@
   "browserslist": [
     "since 2017-06"
   ],
-  "devDependencies": {
-    "parcel-bundler": "^1.12.5",
-    "prettier": "^2.2.1"
-  },
   "dependencies": {
+    "parcel-bundler": "^1.12.5",
+    "prettier": "^2.2.1",
     "@dasha.ai/sdk": "^0.6.5",
     "concurrently": "^6.2.1",
     "cors": "^2.8.5",
