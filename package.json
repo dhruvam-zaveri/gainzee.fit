@@ -9,7 +9,8 @@
   "scripts": {
     "server": "node index.js",
     "client": "parcel client/index.html",
-    "start": "concurrently --kill-others \"npm:server\" \"npm:client\""
+    "start": "concurrently --kill-others \"npm:server\" \"npm:client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install"
   },
   "browserslist": [
     "since 2017-06"
