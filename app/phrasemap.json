@@ -1,0 +1,54 @@
+{
+  "default": {
+    "voiceInfo": {
+      "lang": "en-US",
+      "speaker": "default",
+      "speed": 0.9
+    },
+
+    "phrases": {
+      "greeting":
+      {
+        "first":
+        [{"text": "Welcome to your workout. I am your personal trainer Dasha. Let's begin! Ready?"}]
+      },
+      
+      "exercise":
+      {
+        "first":
+        [
+          {"text": "Next up you have " },
+          {"id": "exercise", "type": "dynamic" },
+          {"text": " for " },
+          {"id": "duration", "type": "dynamic" },
+          {"text": " seconds. Ready? "}
+        ]
+      },
+      "confirmation":
+      {
+        "first":
+        [{"text": "Ready to move on?"}]
+      },
+
+      "counting_15":
+      {
+        "first":
+        [{"text": "... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ...... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... Almost there! ... ... ... ... ... ... ... ..."}]
+      },
+      
+      "break":
+      {
+        "first":
+        [{"text": "Understood. Rest for 20 seconds. "}]
+      }
+    },
+    
+    "macros": {
+      "greeting": {},
+      "exercise": {},
+      "confirmation": {},
+      "break": {},
+      "counting_15": {}
+    }
+  }
+}

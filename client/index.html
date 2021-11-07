@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasha.Fit</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+    <!-- Your file css -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <div class = "container-fluid">
+         <br>
+         <div class = "text-center">
+            <h1 class = "logo">Dasha.Fit</h1>
+         </div>
+         <br>
+         <h4 class = "text-center">Smart AI to simplify your workout experience</h4>
+         <br>
+
+         <div class="input_fields text-center">
+            <input type="text" id="height" name="height" placeholder="Height (cm)"></input>
+            <br>
+            <br>
+
+            <input type="text" id="weight" name="weight" placeholder="Weight (kg)"></input>
+
+            <br><br>
+    
+            <input type="submit" onclick = "showButton()" id="submitButton" class="btn btn-info"className="submit_button"></input>
+            <br>
+        </div>
+
+        <br><br>
+
+        <div class="dasha_button text-center" id="dasha_button">
+            <button class="button" id="runButton">
+                Start Workout<div class="button-bg"></div>
+            </button>
+            <button class="button" hidden id="hangupButton">
+                Stop<div class="button-bg"></div>
+            </button>
+        </div>
+        
+        <br><br>
+
+        <div id="bmi"></div>
+
+        <br><br>
+
+        <div class="container-fluid" id="results_table" hidden=true>
+            <table class="table table-striped">
+                <tbody id="table_body">
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <br>
+
+    <script src="index.js"></script>
+
+    <script type = "text/javascript">
+        
+        function showButton() {
+            let cardio_exercises = ["Jumping Jacks", "High Knees", "Burpees", "Scissor Steps", "Squats", "Mountain Climbers"];
+            let muscle_exercises = ["Push Ups", "Squats", "Pull Ups", "Planks", "Wall Sits", "Bench Press", "Incline Press"];
+            let duration = [15, 15, 15 ,15 ,15 ,15];
+            let set_reps = ['2 sets of 12', '2 sets of 15', '2 sets of 8', '15 seconds', '15 seconds', '3 sets of 8', '3 sets of 8']
+            let height = document.getElementById('height').value; 
+            let weight = document.getElementById('weight').value;
+            let bmi = Math.round((weight / (height * height)) * 10000, 1);
+            let exercises = [];
+            let amount = [];
+            let headers = [];
+            if (bmi >= 25) {
+                exercises = cardio_exercises;
+                amount = duration;
+                headers = ["Sr No.", "Exercise", "Duration (seconds)"];
+            } else {
+                exercises = muscle_exercises;
+                amount = set_reps;
+                headers = ["Sr No.", "Exercise", "Sets & Reps"];
+            }
+
+            var bmi_text = document.getElementById("bmi");
+            bmi_text.innerHTML = "You BMI is " + bmi + " we prescribe these exercises..."
+
+            var dasha_but = document.getElementById("dasha_button");
+            dasha_but.style.display = 'block';
+
+            var tab = document.getElementById("results_table");
+            tab.hidden = false;
+
+            var table_body = document.getElementById("table_body");
+            table_body.innerHTML = "";
+            var tr = document.createElement("tr");
+
+            for(var i = 0; i < 3; i++){
+                var th = document.createElement("th");
+                th.appendChild(document.createTextNode(headers[i]));
+                tr.appendChild(th);
+            }
+
+            table_body.appendChild(tr);
+
+            for(var i = 0; i < exercises.length; i++){
+                var td_1 = document.createElement("td");
+                var td_2 = document.createElement("td");
+                var td_3 = document.createElement("td");
+                tr = document.createElement("tr");
+                td_1.appendChild(document.createTextNode(i+1));
+                tr.appendChild(td_1);   
+                td_2.appendChild(document.createTextNode(exercises[i]));
+                tr.appendChild(td_2);   
+                td_3.appendChild(document.createTextNode(amount[i]));
+                tr.appendChild(td_3);   
+                table_body.appendChild(tr);
+            }
+
+            console.log(table_body);
+        }
+    </script>
+</body>
+
+</html>
