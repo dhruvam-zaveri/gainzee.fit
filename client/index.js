@@ -4,9 +4,11 @@ const api = "http://localhost:8000";
 const runButton = document.getElementById("runButton");
 const hangupButton = document.getElementById("hangupButton");
 //use 180 -> 100
-var height = 0; 
+var height = 0;
 // use 75 -> 200
 var weight = 0;
+var exercises = [];
+var amount = [];
 
 const getAccount = async () => {
   const response = await fetch(`${api}/sip`);
@@ -22,10 +24,10 @@ const createUser = async (aor, server) => {
 };
 
 const runCall = async (aor, name) => {
-  const data = { aor, name, weight, height };
+  const data = { aor, name, exercise, amount };
   console.log("!!!!!!!!!!!!!!!!!!!");
-  console.log(weight);
-  console.log(height);
+  console.log(data);
+  console.log("!!!!!!!!!!!!!!!!!!!");
   await fetch(`${api}/call`, {
     method: "POST",
     headers: {
@@ -33,6 +35,49 @@ const runCall = async (aor, name) => {
     },
     body: JSON.stringify(data),
   });
+};
+
+const setData = () => {
+  let cardio_exercises = [
+    "Jumping Jacks",
+    "High Knees",
+    "Burpees",
+    "Scissor Steps",
+    "Squats",
+    "Mountain Climbers",
+  ];
+  let muscle_exercises = [
+    "Push Ups",
+    "Squats",
+    "Pull Ups",
+    "Planks",
+    "Wall Sits",
+    "Bench Press",
+    "Incline Press",
+  ];
+  let duration = [15, 15, 15, 15, 15, 15];
+  let set_reps = [
+    "2 sets of 12",
+    "2 sets of 15",
+    "2 sets of 8",
+    "15 seconds",
+    "15 seconds",
+    "3 sets of 8",
+    "3 sets of 8",
+  ];
+  let height = document.getElementById("height").value;
+  let weight = document.getElementById("weight").value;
+  let bmi = Math.round((weight / (height * height)) * 10000, 1);
+  // let exercises = [];
+  // let amount = [];
+  // let headers = [];
+  if (bmi >= 25.0) {
+    exercises = cardio_exercises;
+    amount = duration;
+  } else {
+    exercises = muscle_exercises;
+    amount = set_reps;
+  }
 };
 
 const main = async () => {
@@ -59,11 +104,12 @@ const main = async () => {
 
   runButton.addEventListener("click", async () => {
     runButton.disabled = true;
-    height = document.getElementById('height').value;
-    weight = document.getElementById('weight').value;
-    runCall(aor, "Peter").catch(() => {
-      runButton.disabled = false;
-    });
+    setData();
+    if (exercises != [] && amount != []) {
+      runCall(aor, "Peter").catch(() => {
+        runButton.disabled = false;
+      });
+    }
   });
 
   hangupButton.addEventListener("click", async () => {
