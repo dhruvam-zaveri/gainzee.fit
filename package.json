@@ -16,12 +16,12 @@
     "since 2017-06"
   ],
   "devDependencies": {
-    "concurrently": "^6.2.1",
     "parcel-bundler": "^1.12.5",
     "prettier": "^2.2.1"
   },
   "dependencies": {
     "@dasha.ai/sdk": "^0.6.5",
+    "concurrently": "^6.2.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "sip.js": "^0.20.0",
