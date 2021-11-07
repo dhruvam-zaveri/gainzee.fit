@@ -2,14 +2,20 @@ const dasha = require("@dasha.ai/sdk");
 const { v4: uuidv4, NIL } = require("uuid");
 const express = require("express");
 const cors = require("cors");
-const exercises = ["Jumping Jacks", "High Knees", "Burpees", "Scissor Steps", "Squats", "Mountain Climbers"];
+const exercises = [
+  "Jumping Jacks",
+  "High Knees",
+  "Burpees",
+  "Scissor Steps",
+  "Squats",
+  "Mountain Climbers",
+];
 const durations = ["15000", "15000", "15000", "15000", "15000", "15000"];
 var index_exercise = 0;
 var index_duration = 0;
 var user_weight = 0;
 var user_height = 0;
-var workout_type = -1; 
-
+var workout_type = -1;
 
 const expressApp = express();
 expressApp.use(express.json());
@@ -34,10 +40,10 @@ const main = async () => {
 
   expressApp.post("/call", async (req, res) => {
     const { aor, name, weight, height } = req.body;
-    user_weight = Number(weight);
-    user_height = Number(height);
-    var bmi = Number(Math.round(weight / Math.pow(height, 2) * 10000));
-    console.log("==============")
+    // user_weight = Number(weight);
+    // user_height = Number(height);
+    var bmi = Math.round((weight / (height * height)) * 10000, 1);
+    console.log("==============");
     console.log(bmi);
     if (bmi <= 25) {
       // Muscle building workout
@@ -73,9 +79,24 @@ const main = async () => {
   app.setExternal("next_exercise", (args, conv) => {
     var exercises;
     if (workout_type == 0) {
-      exercises = ["Jumping Jacks", "High Knees", "Burpees", "Scissor Steps", "Squats", "Mountain Climbers"];
+      exercises = [
+        "Jumping Jacks",
+        "High Knees",
+        "Burpees",
+        "Scissor Steps",
+        "Squats",
+        "Mountain Climbers",
+      ];
     } else {
-      exercises = ["Push Ups", "Squats", "Pull Ups", "Planks", "Wall Sits", "Bench Press", "Incline Press"];
+      exercises = [
+        "Push Ups",
+        "Squats",
+        "Pull Ups",
+        "Planks",
+        "Wall Sits",
+        "Bench Press",
+        "Incline Press",
+      ];
     }
     console.log(workout_type);
     const exercise = exercises[index_exercise];
@@ -95,8 +116,6 @@ const main = async () => {
     // }
     return "15";
   });
-
-  
 };
 
 main();

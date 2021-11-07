@@ -74,21 +74,20 @@
             let cardio_exercises = ["Jumping Jacks", "High Knees", "Burpees", "Scissor Steps", "Squats", "Mountain Climbers"];
             let muscle_exercises = ["Push Ups", "Squats", "Pull Ups", "Planks", "Wall Sits", "Bench Press", "Incline Press"];
             let duration = [15, 15, 15 ,15 ,15 ,15];
-            let set_reps = ['2 sets of 12', '2 sets of 15', '2 sets of 8', '15 seconds', '15 seconds', '3 sets of 8', '3 sets of 8']
+            let set_reps = [15, 15, 15 ,15 ,15 ,15, 15]
             let height = document.getElementById('height').value; 
             let weight = document.getElementById('weight').value;
             let bmi = Math.round((weight / (height * height)) * 10000, 1);
             let exercises = [];
             let amount = [];
-            let headers = [];
+            let headers = ["Sr No.", "Exercise", "Duration"];
+
             if (bmi >= 25) {
                 exercises = cardio_exercises;
                 amount = duration;
-                headers = ["Sr No.", "Exercise", "Duration (seconds)"];
             } else {
                 exercises = muscle_exercises;
                 amount = set_reps;
-                headers = ["Sr No.", "Exercise", "Sets & Reps"];
             }
 
             var bmi_text = document.getElementById("bmi");
@@ -121,7 +120,7 @@
                 tr.appendChild(td_1);   
                 td_2.appendChild(document.createTextNode(exercises[i]));
                 tr.appendChild(td_2);   
-                td_3.appendChild(document.createTextNode(amount[i]));
+                td_3.appendChild(document.createTextNode(amount[i]+' seconds'));
                 tr.appendChild(td_3);   
                 table_body.appendChild(tr);
             }
